@@ -1,5 +1,6 @@
 ## Projeto: Sistema de Controle de LED e Monitoramento de Luminosidade com ESP32 e MQTT
-
+## Link youtube 
+https://www.youtube.com/watch?v=2uKJQkGXOCA
 ### Descrição
 ![image](https://github.com/user-attachments/assets/343d4040-2ff6-4cd4-bdb5-741a46d6a83a)
 
