@@ -1,49 +1,49 @@
-Projeto: Sistema de Controle de LED e Monitoramento de Luminosidade com ESP32 e MQTT
-Descrição
-Este projeto utiliza um ESP32 para se conectar a uma rede Wi-Fi e a um broker MQTT. O objetivo é controlar o estado de um LED onboard (ligado/desligado) remotamente e monitorar a luminosidade de um ambiente através de um sensor de luminosidade (potenciômetro). As leituras e o estado do LED são enviados para o broker MQTT em tópicos específicos, permitindo a interação com o dispositivo via MQTT.
+##Projeto: Sistema de Controle de LED e Monitoramento de Luminosidade com ESP32 e MQTT
+#Descrição
+Este projeto utiliza um ESP32 para conectar a uma rede Wi-Fi e a um broker MQTT. O objetivo é controlar remotamente o estado de um LED onboard (ligado/desligado) e monitorar a luminosidade do ambiente por meio de um sensor (potenciômetro). As leituras de luminosidade e o estado do LED são publicados em tópicos MQTT, permitindo interação remota.
 
-Funcionalidades
-Controle Remoto do LED: Permite ligar e desligar o LED onboard do ESP32 via comandos MQTT.
-Monitoramento de Luminosidade: O valor da luminosidade é lido de um potenciômetro e enviado periodicamente ao broker MQTT.
-Reconexão Automática: Se o ESP32 perder a conexão Wi-Fi ou MQTT, ele tentará reconectar automaticamente.
-Indicação de Estado do LED: O estado do LED é enviado constantemente ao broker MQTT.
-Componentes Utilizados
+#Funcionalidades
+#Controle Remoto do LED: 
+Liga e desliga o LED onboard via comandos MQTT.
+#Monitoramento de Luminosidade: 
+Lê e publica periodicamente o valor da luminosidade.
+#Reconexão Automática: 
+Tenta reconectar à rede Wi-Fi e ao broker MQTT em caso de perda de conexão.
+#Indicação de Estado do LED: 
+O estado atual do LED é publicado no broker MQTT.
+#Componentes Utilizados
 ESP32
 LED onboard (pino D4)
 Potenciômetro (pino 34)
 Broker MQTT (Mosquitto ou outro)
-Configurações de Rede e MQTT
-O código utiliza as seguintes configurações:
-
+#Configurações de Rede e MQTT
 SSID: Nome da rede Wi-Fi (Wokwi-GUEST)
-Senha: Senha da rede Wi-Fi (nesse caso, vazio)
+Senha: Senha da rede Wi-Fi (vazia neste exemplo)
 Broker MQTT: IP do broker MQTT (4.236.177.132)
-Porta MQTT: Porta utilizada pelo broker MQTT (1883)
+Porta MQTT: Porta do broker MQTT (1883)
 Tópicos MQTT:
-/TEF/lamp001/cmd: Tópico de subscrição para comandos de controle do LED.
-/TEF/lamp001/attrs: Tópico para publicar o estado atual do LED.
-/TEF/lamp001/attrs/l: Tópico para publicar o valor de luminosidade.
-Fluxo do Projeto
-O ESP32 se conecta à rede Wi-Fi especificada.
-O ESP32 se conecta ao broker MQTT.
-O LED onboard pisca 10 vezes para indicar a inicialização bem-sucedida.
+/TEF/lamp001/cmd: Tópico para controle do LED.
+/TEF/lamp001/attrs: Tópico para o estado do LED.
+/TEF/lamp001/attrs/l: Tópico para o valor da luminosidade.
+#Fluxo do Projeto
+O ESP32 se conecta à rede Wi-Fi configurada.
+#Conecta-se ao broker MQTT.
+O LED onboard pisca 10 vezes para sinalizar a inicialização.
 O ESP32 publica o estado inicial do LED como "ligado" no tópico /TEF/lamp001/attrs.
-O ESP32 se mantém em um loop que:
+No loop principal:
 Verifica as conexões Wi-Fi e MQTT.
-Envia o estado atual do LED ao broker.
-Lê a luminosidade do potenciômetro e publica o valor no tópico /TEF/lamp001/attrs/l.
+Envia o estado do LED ao broker.
+Lê a luminosidade do potenciômetro e publica no tópico /TEF/lamp001/attrs/l.
 Comandos MQTT
-Os comandos MQTT aceitos para o controle do LED são:
+Os seguintes comandos podem ser enviados via MQTT para controlar o LED:
 
 Ligar LED: lamp001@on|
 Desligar LED: lamp001@off|
-Como Usar
-Faça o upload do código para o ESP32 utilizando a IDE Arduino.
-Certifique-se de que o broker MQTT esteja funcionando e acessível pelo IP configurado.
-Abra o monitor serial na IDE para verificar as mensagens de debug.
-Utilize um cliente MQTT para enviar os comandos de controle do LED e receber os valores de luminosidade.
-Dependências
-Este projeto utiliza as seguintes bibliotecas:
-
-WiFi.h: Para conectar o ESP32 à rede Wi-Fi.
-PubSubClient.h: Para realizar a comunicação via protocolo MQTT.
+#Como Usar
+Faça o upload do código no ESP32 através da IDE Arduino.
+Certifique-se de que o broker MQTT está rodando e acessível no IP configurado.
+Abra o monitor serial da IDE Arduino para visualizar as mensagens de debug.
+Use um cliente MQTT (como o MQTT.fx ou o Mosquitto CLI) para enviar comandos e visualizar os dados publicados.
+#Dependências
+WiFi.h: Biblioteca para conectar o ESP32 ao Wi-Fi.
+PubSubClient.h: Biblioteca para comunicação via protocolo MQTT.
