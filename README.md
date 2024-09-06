@@ -1,6 +1,7 @@
 ## Projeto: Sistema de Controle de LED e Monitoramento de Luminosidade com ESP32 e MQTT
 
 ### Descrição
+![image](https://github.com/user-attachments/assets/343d4040-2ff6-4cd4-bdb5-741a46d6a83a)
 
 Este projeto utiliza um ESP32 para conectar a uma rede Wi-Fi e a um broker MQTT. O objetivo é controlar remotamente o estado de um LED onboard (ligado/desligado) e monitorar a luminosidade do ambiente por meio de um sensor (potenciômetro). As leituras de luminosidade e o estado do LED são publicados em tópicos MQTT, permitindo interação remota.
 
